@@ -11,8 +11,8 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
-        // Called when entering the state
-        Debug.Log("Entering Free Look State");
+       stateMachine.InputReader.JumpEvent += OnJump;
+       stateMachine.InputReader.DodgeEvent += OnDodge;
     }
 
     public override void Tick(float deltaTime)
@@ -23,8 +23,18 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
-        // Called when exiting the state
-        Debug.Log("Exiting Free Look State");
+        stateMachine.InputReader.JumpEvent -= OnJump;
+        stateMachine.InputReader.DodgeEvent -= OnDodge;
     } 
+
+    private void OnJump()
+    {
+        Debug.Log("Jumping!");
+    }
+
+    private void OnDodge()
+    {
+        Debug.Log("Dodging!");
+    }
 }
 
