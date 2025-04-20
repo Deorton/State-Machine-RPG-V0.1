@@ -17,8 +17,15 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        // Called every frame while in this state
-        Debug.Log("In Free Look State");
+        Vector3 movement = new Vector3();
+        
+        // Get the movement input from the InputReader and set the y component to 0
+        // to prevent vertical movement when the player is on the ground.
+        movement.x = stateMachine.InputReader.MovementValue.x;
+        movement.y = 0f;
+        movement.z = stateMachine.InputReader.MovementValue.y;
+
+        stateMachine.PlayerController.Move(movement * deltaTime);
     }
 
     public override void Exit()
