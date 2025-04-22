@@ -6,6 +6,7 @@ using UnityEngine;
 public class Targeter : MonoBehaviour
 {
     [SerializeField] private CinemachineTargetGroup cineTargetGroup;
+    [SerializeField] private Camera mainCamera;
 
     public Target CurrentTarget { get; private set; }
     public List<Target> targets = new List<Target>();
@@ -17,6 +18,12 @@ public class Targeter : MonoBehaviour
         {
             Debug.LogError("CinemachineTargetGroup not found in children.");
         }  
+
+        mainCamera = Camera.main;
+        if (mainCamera == null)
+        {
+            Debug.LogError("Main camera not found.");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,9 +43,36 @@ public class Targeter : MonoBehaviour
 
     public bool SelectTarget()
     {
+        ClearTargetGroupList();
+
         if (targets.Count == 0) { return false; }
 
-        CurrentTarget = targets[0];
+        Target closestTarget = null;
+        float closestTargetDistance = Mathf.Infinity;
+
+        foreach (Target target in targets)
+        {
+            if (target == null) { continue; }
+
+            Vector2 screenPos = mainCamera.WorldToViewportPoint(target.transform.position);
+            
+            if(screenPos.x < 0 || screenPos.x > 1 || screenPos.y < 0 || screenPos.y > 1)
+            {
+                continue;
+            }
+
+            Vector2 toCenter = screenPos - new Vector2(0.5f, 0.5f);
+
+            if(toCenter.sqrMagnitude < closestTargetDistance)
+            {
+                closestTargetDistance = toCenter.sqrMagnitude;
+                closestTarget = target;
+            }
+        }
+
+        if (closestTarget == null) { return false; }
+
+        CurrentTarget = closestTarget;
         cineTargetGroup.AddMember(CurrentTarget.transform, 1f, 2f);
 
         return true;
@@ -50,7 +84,13 @@ public class Targeter : MonoBehaviour
 
         cineTargetGroup.RemoveMember(CurrentTarget.transform);
         CurrentTarget = null;
-        cineTargetGroup.DoUpdate();
+    }
+
+    private void ClearTargetGroupList()
+    {
+        Transform playerTransform = cineTargetGroup.m_Targets[0].target;
+        cineTargetGroup.m_Targets = new CinemachineTargetGroup.Target[0];
+        cineTargetGroup.AddMember(playerTransform, 0.25f, 2f);
     }
 
     private void RemoveTarget(Target target)
