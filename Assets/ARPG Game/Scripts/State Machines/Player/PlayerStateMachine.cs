@@ -9,8 +9,10 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public InputReader InputReader { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public ForceReciever ForceReciever { get; private set; }
+    [field: SerializeField] public AttackData[] AttackDatas { get; private set; }
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
+    [field: SerializeField] public float CrossFadeDampTime { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
     public float animatorDampTime = 0.1f;

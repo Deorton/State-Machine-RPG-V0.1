@@ -2176,8 +2176,13 @@ MonoBehaviour:
   <InputReader>k__BackingField: {fileID: 0}
   <Targeter>k__BackingField: {fileID: 0}
   <ForceReciever>k__BackingField: {fileID: 0}
+  <AttackDatas>k__BackingField:
+  - <AnimationName>k__BackingField: Attack 1
+  - <AnimationName>k__BackingField: Attack 2
+  - <AnimationName>k__BackingField: Attack 3
   <FreeLookMovementSpeed>k__BackingField: 6
   <TargetingMovementSpeed>k__BackingField: 4
+  <CrossFadeDampTime>k__BackingField: 0.1
   animatorDampTime: 0.1
   rotationDampTime: 10
 --- !u!114 &4308170523113025459
