@@ -7,6 +7,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public CharacterController PlayerController { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public InputReader InputReader { get; private set; }
+    [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
@@ -18,6 +19,7 @@ public class PlayerStateMachine : StateMachine
         PlayerController = GetComponent<CharacterController>();
         Animator = GetComponent<Animator>();
         InputReader = GetComponent<InputReader>();
+        Targeter = GetComponentInChildren<Targeter>();
         MainCameraTransform = Camera.main.transform;
     }
 

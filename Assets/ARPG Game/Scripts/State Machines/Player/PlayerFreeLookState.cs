@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +11,12 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         
     }
-
+ 
     public override void Enter()
     {
-       stateMachine.InputReader.JumpEvent += OnJump;
-       stateMachine.InputReader.DodgeEvent += OnDodge;
+        stateMachine.InputReader.TargetEvent += OnTarget;
+        stateMachine.InputReader.JumpEvent += OnJump;
+        stateMachine.InputReader.DodgeEvent += OnDodge;
     }
 
     public override void Tick(float deltaTime)
@@ -28,7 +30,7 @@ public class PlayerFreeLookState : PlayerBaseState
             stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0f, stateMachine.animatorDampTime, deltaTime);
             return;
         }
-        
+
         if (movement == Vector3.zero) { return; }
 
         stateMachine.Animator.SetFloat(FreeLookSpeedHash, 1f, stateMachine.animatorDampTime, deltaTime);
@@ -40,6 +42,7 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         stateMachine.InputReader.JumpEvent -= OnJump;
         stateMachine.InputReader.DodgeEvent -= OnDodge;
+        stateMachine.InputReader.DodgeEvent -= OnTarget;
     } 
 
     private Vector3 CalculateMovement()
@@ -60,6 +63,12 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         Quaternion targetRotation = Quaternion.LookRotation(movement);
         stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, targetRotation, deltaTime * stateMachine.rotationDampTime); 
+    }
+
+    private void OnTarget()
+    {
+        if (!stateMachine.Targeter.SelectTarget()) { return; }
+        stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
     }
 
     private void OnJump()
