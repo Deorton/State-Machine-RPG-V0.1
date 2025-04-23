@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPGCharacterAnims.Actions;
 using UnityEngine;
 
 public abstract class PlayerBaseState : State
@@ -9,6 +10,11 @@ public abstract class PlayerBaseState : State
     public PlayerBaseState(PlayerStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
+    }
+
+    protected void Move(float deltaTime)
+    {
+        Move(Vector3.zero, deltaTime);
     }
 
     protected void Move(Vector3 motion, float deltaTime)

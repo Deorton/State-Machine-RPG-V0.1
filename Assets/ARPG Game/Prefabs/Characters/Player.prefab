@@ -2178,8 +2178,17 @@ MonoBehaviour:
   <ForceReciever>k__BackingField: {fileID: 0}
   <AttackDatas>k__BackingField:
   - <AnimationName>k__BackingField: Attack 1
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 1
+    <ComboAttackTime>k__BackingField: 0.6
   - <AnimationName>k__BackingField: Attack 2
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 2
+    <ComboAttackTime>k__BackingField: 0.5
   - <AnimationName>k__BackingField: Attack 3
+    <TransitionDuration>k__BackingField: 0.2
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 0
   <FreeLookMovementSpeed>k__BackingField: 6
   <TargetingMovementSpeed>k__BackingField: 4
   <CrossFadeDampTime>k__BackingField: 0.1
