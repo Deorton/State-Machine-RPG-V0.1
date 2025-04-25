@@ -10,4 +10,6 @@ public class AttackData
     [field: SerializeField] public float TransitionDuration { get; private set; }
     [field: SerializeField] public int ComboStateIndex { get; private set; } = -1;
     [field: SerializeField] public float ComboAttackTime { get; private set; }
+    [field: SerializeField] public float ForceTime { get; private set; }
+    [field: SerializeField] public float ForceAmount { get; private set; }
 }

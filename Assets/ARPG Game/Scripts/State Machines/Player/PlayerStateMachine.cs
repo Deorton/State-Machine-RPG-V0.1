@@ -9,7 +9,9 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public InputReader InputReader { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
     [field: SerializeField] public ForceReciever ForceReciever { get; private set; }
+    [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
     [field: SerializeField] public AttackData[] AttackDatas { get; private set; }
+    
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
     [field: SerializeField] public float CrossFadeDampTime { get; private set; }
@@ -26,6 +28,7 @@ public class PlayerStateMachine : StateMachine
         Targeter = GetComponentInChildren<Targeter>();
         ForceReciever = GetComponent<ForceReciever>();
         MainCameraTransform = Camera.main.transform;
+        WeaponHandler = GetComponent<WeaponHandler>();
     }
 
     // Start is called before the first frame update

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAttackingState : PlayerBaseState
 {
     private float previousFrameTime;
+    private bool alreadyAppliedForce;
 
     private AttackData attackData;
 
@@ -26,7 +27,12 @@ public class PlayerAttackingState : PlayerBaseState
 
         float normalizedTime = GetNormalizedTime();
 
-        if(normalizedTime > previousFrameTime && normalizedTime < 1f)
+        if(normalizedTime >= attackData.ForceTime)
+        {
+            TryApllyForce();
+        }
+
+        if(normalizedTime >= previousFrameTime && normalizedTime < 1f)
         {
             if(stateMachine.InputReader.IsAttacking)
             {
@@ -35,7 +41,14 @@ public class PlayerAttackingState : PlayerBaseState
         } 
         else
         {
-            //goback to locomotion
+            if(stateMachine.Targeter.CurrentTarget != null)
+            {
+                stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
+            }
+            else
+            {
+                stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+            }
         }
 
         previousFrameTime = normalizedTime;
@@ -72,5 +85,12 @@ public class PlayerAttackingState : PlayerBaseState
         if(normalizedTime < attackData.ComboAttackTime) { return; }
 
         stateMachine.SwitchState(new PlayerAttackingState(stateMachine, attackData.ComboStateIndex));
+    }
+
+    private void TryApllyForce()
+    {
+        if(alreadyAppliedForce) { return; }
+        alreadyAppliedForce = true;
+        stateMachine.ForceReciever.AddForce(stateMachine.transform.forward * attackData.ForceAmount);
     }
 }

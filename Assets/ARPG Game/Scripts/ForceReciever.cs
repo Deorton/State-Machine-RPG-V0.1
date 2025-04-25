@@ -5,8 +5,12 @@ using UnityEngine;
 public class ForceReciever : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
+    [SerializeField] private float ImpactSmoothTime;
+
+    private Vector3 dampingVelocity;
+    private Vector3 impact;
     private float verticalVelocity;
-    public Vector3 movement => Vector3.up * verticalVelocity;
+    public Vector3 movement => impact + Vector3.up * verticalVelocity;
 
     void Awake()
     {
@@ -27,5 +31,12 @@ public class ForceReciever : MonoBehaviour
         {
             verticalVelocity += Physics.gravity.y * Time.deltaTime;
         }
+
+        impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, ImpactSmoothTime);
+    }
+
+    public void AddForce(Vector3 force)
+    {
+        impact += force;
     }
 }
