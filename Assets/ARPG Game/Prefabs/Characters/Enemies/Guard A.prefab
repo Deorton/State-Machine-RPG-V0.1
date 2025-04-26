@@ -2129,7 +2129,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 03d607cf5dce72544a66f3ef297a5b72, type: 2}
     - target: {fileID: 4246794232448821389, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -7.42279
       objectReference: {fileID: 0}
     - target: {fileID: 4246794232448821389, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2137,7 +2137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4246794232448821389, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 18.131992
       objectReference: {fileID: 0}
     - target: {fileID: 4246794232448821389, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2174,6 +2174,22 @@ PrefabInstance:
     - target: {fileID: 4938142233657108066, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
       propertyPath: <CrossFadeDampTime>k__BackingField
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938142233657108066, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
+      propertyPath: <PlayerChasingRange>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150544562099695409, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652009298197633671, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652009298197633671, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
+      propertyPath: m_MinMoveDistance
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

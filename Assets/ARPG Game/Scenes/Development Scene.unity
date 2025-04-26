@@ -644,10 +644,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 350770102635858848, guid: 79cdb00a95f58ef4ebc8fadc4495905a, type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: 98730b7884f51c84daac95aa72960d91, type: 3}
     - target: {fileID: 920465003168519907, guid: 79cdb00a95f58ef4ebc8fadc4495905a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.42279
@@ -691,18 +687,6 @@ PrefabInstance:
     - target: {fileID: 1680439294772502020, guid: 79cdb00a95f58ef4ebc8fadc4495905a, type: 3}
       propertyPath: m_Name
       value: Guard A
-      objectReference: {fileID: 0}
-    - target: {fileID: 5637273409738089705, guid: 79cdb00a95f58ef4ebc8fadc4495905a, type: 3}
-      propertyPath: m_Radius
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5637273409738089705, guid: 79cdb00a95f58ef4ebc8fadc4495905a, type: 3}
-      propertyPath: m_MinMoveDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6130055180844945759, guid: 79cdb00a95f58ef4ebc8fadc4495905a, type: 3}
-      propertyPath: m_Radius
-      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -153,6 +153,8 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 0}
   <ForceReciever>k__BackingField: {fileID: 0}
   <WeaponHandler>k__BackingField: {fileID: 0}
+  <Player>k__BackingField: {fileID: 0}
+  <PlayerChasingRange>k__BackingField: 5
   <CrossFadeDampTime>k__BackingField: 0.1
   <AnimatorDampTime>k__BackingField: 0.1
 --- !u!114 &8503222672961602405

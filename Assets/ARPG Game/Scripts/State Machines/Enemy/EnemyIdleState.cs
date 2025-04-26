@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPGCharacterAnims.Actions;
 using UnityEngine;
 
 public class EnemyIdleState : EnemyBaseState
@@ -20,6 +21,14 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Tick(float deltaTime)
     {
+        Move(deltaTime);
+
+        // Check if the player is in range to chase
+        if(IsPlayerInChasingRange())
+        {
+        //    stateMachine.SwitchState(new EnemyChaseState(stateMachine));
+            return;
+        }
         stateMachine.Animator.SetFloat(SpeedHash, 0f, stateMachine.AnimatorDampTime, deltaTime);
     }
 
