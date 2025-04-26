@@ -12,8 +12,11 @@ namespace ARPGGame.Combat
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private WeaponHandler weaponHandler;
-
+        [SerializeField] private Collider myColiider;
         private Collider weaponCollider;
+        private List<Collider> alReadyCollidedWith = new List<Collider>();
+        private float damage; // Default damage value
+
         void Awake()
         {
             weaponHandler = GetComponentInParent<WeaponHandler>();
@@ -24,12 +27,32 @@ namespace ARPGGame.Combat
                 Debug.LogError("WeaponHandler not found in the scene.");
             }
 
-            weaponHandler.SetWeaponCollider(GetComponent<Collider>());
             weaponCollider = GetComponent<Collider>();
+            weaponHandler.setCurrentWeapon(this); // Set the current weapon in the WeaponHandler
             weaponCollider.isTrigger = true; // Set the collider to be a trigger
             weaponCollider.enabled = false; // Disable the collider by default
+
+            myColiider = transform.root.GetComponent<CharacterController>();
+            
         }
 
-        
+        void OnTriggerEnter(Collider other)
+        {
+            if(other == myColiider) return; // Ignore the trigger if it is the same as the weapon collider
+
+            if(alReadyCollidedWith.Contains(other)) return; // Ignore if already collided with this object
+            alReadyCollidedWith.Add(other); // Add the object to the list of collided objects
+
+            if(other.TryGetComponent<Health>(out Health health)) // Check if the other object has a Health component
+            {
+                damage = weaponHandler.GetDamage(); // Get the base damage from the AttackData component
+                health.TakeDamage(damage); // Call the TakeDamage method on the Health component
+            }
+        }
+
+        public void ClearList()
+        {
+            alReadyCollidedWith.Clear(); // Clear the list of collided objects
+        }
     }
 }

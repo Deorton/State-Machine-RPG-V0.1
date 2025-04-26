@@ -16,7 +16,7 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void Enter()
     {
-        stateMachine.Animator.Play(TargetingBlendTreeHash, 0, 0f);
+        stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, stateMachine.CrossFadeDampTime);
         stateMachine.InputReader.CancelEvent += OnCanceled;
     }
 
