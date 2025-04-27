@@ -11,7 +11,9 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public ForceReciever ForceReciever { get; private set; }
     [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
+    [field: SerializeField] public Target Target { get; private set; }
     [field: SerializeField] public GameObject Player { get; private set; }
+    [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public float PlayerAttackingRange { get; private set; }
     [field: SerializeField] public float Damage { get; private set; }
@@ -32,6 +34,8 @@ public class EnemyStateMachine : StateMachine
         WeaponHandler = GetComponent<WeaponHandler>();
         NavAgent = GetComponent<NavMeshAgent>();
         Health = GetComponent<Health>();
+        Target = GetComponent<Target>();
+        Ragdoll = GetComponent<Ragdoll>();
 
         Player = GameObject.FindGameObjectWithTag("Player");
         if (Player == null)
@@ -51,16 +55,23 @@ public class EnemyStateMachine : StateMachine
     void OnEnable()
     {
         Health.OnTakeDamage += OnTakeDamage;
+        Health.OnDie += HandleDie;
     }
 
     void OnDisable()
     {
         Health.OnTakeDamage -= OnTakeDamage;
+        Health.OnDie -= HandleDie;
     }
 
     private void OnTakeDamage(float stunTime)
     {
         SwitchState(new EnemyImpactState(this, stunTime));
+    }
+
+    private void HandleDie()
+    {
+        SwitchState(new EnemyDeadState(this));
     }
 
     void OnDrawGizmosSelected()

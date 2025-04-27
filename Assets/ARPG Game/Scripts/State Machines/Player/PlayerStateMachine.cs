@@ -12,6 +12,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
     [field: SerializeField] public AttackData[] AttackDatas { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
 
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
     
@@ -33,6 +34,7 @@ public class PlayerStateMachine : StateMachine
         MainCameraTransform = Camera.main.transform;
         WeaponHandler = GetComponent<WeaponHandler>();
         Health = GetComponent<Health>();
+        Ragdoll = GetComponent<Ragdoll>();
     }
 
     // Start is called before the first frame update
@@ -44,15 +46,22 @@ public class PlayerStateMachine : StateMachine
     void OnEnable()
     {
         Health.OnTakeDamage += OnTakeDamage;
+        Health.OnDie += HandleDie;
     }
 
     void OnDisable()
     {
         Health.OnTakeDamage -= OnTakeDamage;
+        Health.OnDie -= HandleDie;
     }
 
     private void OnTakeDamage(float stunTime)
     {
         SwitchState(new PlayerImpactState(this, stunTime));
+    }
+
+    private void HandleDie()
+    {
+        SwitchState(new PlayerDeadState(this));
     }
 }

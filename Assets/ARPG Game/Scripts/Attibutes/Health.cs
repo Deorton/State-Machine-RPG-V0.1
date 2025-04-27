@@ -9,7 +9,10 @@ public class Health : MonoBehaviour
     public float currentHealth;
 
     public event Action<float> OnTakeDamage;
+    public event Action OnDie;
+
     private bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +31,12 @@ public class Health : MonoBehaviour
 
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         OnTakeDamage?.Invoke(stunTime);
-        Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
+    //    Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
 
         if (currentHealth == 0)
         {
-            Die();
+            isDead = true;
+            OnDie?.Invoke();
         }
     }
 

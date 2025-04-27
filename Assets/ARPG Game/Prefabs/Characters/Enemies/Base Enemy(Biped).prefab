@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1618584124101269806}
   - component: {fileID: 815176607514219698}
   - component: {fileID: 1316467142166182610}
+  - component: {fileID: 5629995264410645353}
   m_Layer: 0
   m_Name: Base Enemy(Biped)
   m_TagString: Untagged
@@ -178,7 +179,9 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 0}
   <ForceReciever>k__BackingField: {fileID: 0}
   <WeaponHandler>k__BackingField: {fileID: 0}
+  <Target>k__BackingField: {fileID: 0}
   <Player>k__BackingField: {fileID: 0}
+  <Ragdoll>k__BackingField: {fileID: 0}
   <PlayerChasingRange>k__BackingField: 5
   <PlayerAttackingRange>k__BackingField: 2
   <Damage>k__BackingField: 5
@@ -244,3 +247,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+--- !u!114 &5629995264410645353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412694043705614442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16113e1d272b93b40aac743934ba73b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  characterController: {fileID: 0}

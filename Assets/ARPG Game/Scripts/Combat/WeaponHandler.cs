@@ -22,6 +22,11 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
+    public GameObject GetWeapon()
+    {
+        return currentWeapon.gameObject; // Return the current weapon GameObject
+    }
+
     public void EnableWeaponCollider()
     {
         if (weaponCollider != null)
