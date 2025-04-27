@@ -36,8 +36,10 @@ public class ForceReciever : MonoBehaviour
 
         impact = Vector3.SmoothDamp(impact, Vector3.zero, ref dampingVelocity, ImpactSmoothTime);
 
-        if(impact == Vector3.zero)
+        if(impact.sqrMagnitude < 0.2f * 0.2f)
         {
+            impact = Vector3.zero; // Reset impact if it's very small
+
             if (navAgent != null)
             {
                 navAgent.enabled = true; // Re-enable NavMeshAgent when impact is zero

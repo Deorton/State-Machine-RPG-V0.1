@@ -11,6 +11,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public ForceReciever ForceReciever { get; private set; }
     [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
     [field: SerializeField] public AttackData[] AttackDatas { get; private set; }
+    [field: SerializeField] public Health Health { get; private set; }
     
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
@@ -29,11 +30,27 @@ public class PlayerStateMachine : StateMachine
         ForceReciever = GetComponent<ForceReciever>();
         MainCameraTransform = Camera.main.transform;
         WeaponHandler = GetComponent<WeaponHandler>();
+        Health = GetComponent<Health>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         SwitchState(new PlayerFreeLookState(this));
+    }
+
+    void OnEnable()
+    {
+        Health.OnTakeDamage += OnTakeDamage;
+    }
+
+    void OnDisable()
+    {
+        Health.OnTakeDamage -= OnTakeDamage;
+    }
+
+    private void OnTakeDamage()
+    {
+        SwitchState(new PlayerImpactState(this));
     }
 }

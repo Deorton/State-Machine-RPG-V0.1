@@ -8,6 +8,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public CharacterController CharController { get; private set; }
     [field: SerializeField] public  NavMeshAgent NavAgent { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
+    [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public ForceReciever ForceReciever { get; private set; }
     [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
     [field: SerializeField] public GameObject Player { get; private set; }
@@ -29,6 +30,7 @@ public class EnemyStateMachine : StateMachine
         ForceReciever = GetComponent<ForceReciever>();
         WeaponHandler = GetComponent<WeaponHandler>();
         NavAgent = GetComponent<NavMeshAgent>();
+        Health = GetComponent<Health>();
 
         Player = GameObject.FindGameObjectWithTag("Player");
         if (Player == null)
@@ -43,6 +45,21 @@ public class EnemyStateMachine : StateMachine
         NavAgent.updateRotation = false;
 
         SwitchState(new EnemyIdleState(this));
+    }
+
+    void OnEnable()
+    {
+        Health.OnTakeDamage += OnTakeDamage;
+    }
+
+    void OnDisable()
+    {
+        Health.OnTakeDamage -= OnTakeDamage;
+    }
+
+    private void OnTakeDamage()
+    {
+        SwitchState(new EnemyImpactState(this));
     }
 
     void OnDrawGizmosSelected()
