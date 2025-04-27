@@ -9,6 +9,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private Weapon currentWeapon;
 
     private float damage; // Default damage value
+    private float Knockback;
     
     public void setCurrentWeapon(Weapon weapon)
     {
@@ -45,13 +46,19 @@ public class WeaponHandler : MonoBehaviour
         }
     }
 
-    public void SetAttackDamage(float BaseDamage)
+    public void SetAttackDamage(float BaseDamage, float knockback)
     {
         damage = BaseDamage; // Set the damage value from the AttackData component
+        Knockback = knockback; // Set the knockback value from the AttackData component
     }
 
     public float GetDamage()
     {
         return damage; // Return the damage value
-    }   
+    }  
+
+    public float GetKnockback()
+    {
+        return Knockback; // Return the damage value
+    }  
 }

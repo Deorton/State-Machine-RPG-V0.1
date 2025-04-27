@@ -11,9 +11,20 @@ public abstract class EnemyBaseState : State
         this.stateMachine = stateMachine;
     }
 
-    protected bool IsPlayerInChasingRange()
+    protected void FacePlayer()
     {
-        return Vector3.Distance(stateMachine.transform.position, stateMachine.Player.transform.position) <= stateMachine.PlayerChasingRange;
+        if (stateMachine.Player == null) { return; }
+
+        Vector3 directionToTarget = stateMachine.Player.transform.position - stateMachine.transform.position;
+        directionToTarget.y = 0f;
+
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, targetRotation, stateMachine.rotationDampTime);
+    }
+
+    protected bool IsPlayerInRange(float range)
+    {
+        return Vector3.Distance(stateMachine.transform.position, stateMachine.Player.transform.position) <= range;
     }
 
     protected void Move(float deltaTime)

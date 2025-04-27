@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStateMachine : StateMachine
 {
     [field: SerializeField] public CharacterController CharController { get; private set; }
+    [field: SerializeField] public  NavMeshAgent NavAgent { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public ForceReciever ForceReciever { get; private set; }
     [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
     [field: SerializeField] public GameObject Player { get; private set; }
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
+    [field: SerializeField] public float PlayerAttackingRange { get; private set; }
+    [field: SerializeField] public float Damage { get; private set; }
+    [field: SerializeField] public float AttackKnockback { get; private set; }
+    [field: SerializeField] public float ChaseMovementSpeed { get; private set; }
+    [field: SerializeField] public float PatrolMovementSpeed { get; private set; }
     [field: SerializeField] public float CrossFadeDampTime { get; private set; }
     [field: SerializeField] public float AnimatorDampTime { get; private set; }
+
+    public float rotationDampTime = 0.1f;
 
     void Awake()
     {
@@ -19,6 +28,7 @@ public class EnemyStateMachine : StateMachine
         Animator = GetComponent<Animator>();
         ForceReciever = GetComponent<ForceReciever>();
         WeaponHandler = GetComponent<WeaponHandler>();
+        NavAgent = GetComponent<NavMeshAgent>();
 
         Player = GameObject.FindGameObjectWithTag("Player");
         if (Player == null)
@@ -29,6 +39,9 @@ public class EnemyStateMachine : StateMachine
 
     void Start()
     {
+        NavAgent.updatePosition = false;
+        NavAgent.updateRotation = false;
+
         SwitchState(new EnemyIdleState(this));
     }
 

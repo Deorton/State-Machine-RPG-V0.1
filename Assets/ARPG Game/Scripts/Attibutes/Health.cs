@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
-    private float currentHealth;
+    public float currentHealth;
     private bool isDead = false;
     // Start is called before the first frame update
     void Start()

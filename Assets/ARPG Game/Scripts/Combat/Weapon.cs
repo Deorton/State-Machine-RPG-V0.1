@@ -14,8 +14,9 @@ namespace ARPGGame.Combat
         [SerializeField] private WeaponHandler weaponHandler;
         [SerializeField] private Collider myColiider;
         private Collider weaponCollider;
-        private List<Collider> alReadyCollidedWith = new List<Collider>();
+        public List<Collider> alReadyCollidedWith = new List<Collider>();
         private float damage; // Default damage value
+        private float knockback; // Default knockback value
 
         void Awake()
         {
@@ -32,8 +33,8 @@ namespace ARPGGame.Combat
             weaponCollider.isTrigger = true; // Set the collider to be a trigger
             weaponCollider.enabled = false; // Disable the collider by default
 
-            myColiider = transform.root.GetComponent<CharacterController>();
-            
+            myColiider = transform.root.GetComponent<CapsuleCollider>();
+            alReadyCollidedWith.Add(myColiider); // Add the character controller to the list to avoid self-collision
         }
 
         void OnTriggerEnter(Collider other)
@@ -48,11 +49,18 @@ namespace ARPGGame.Combat
                 damage = weaponHandler.GetDamage(); // Get the base damage from the AttackData component
                 health.TakeDamage(damage); // Call the TakeDamage method on the Health component
             }
+
+            if(other.TryGetComponent<ForceReciever>(out ForceReciever forceReciever)) // Check if the other object has a ForceReciever component
+            {
+                knockback = weaponHandler.GetKnockback(); // Get the knockback value from the AttackData component
+                forceReciever.AddForce((other.transform.position - myColiider.transform.position).normalized * knockback);
+            }
         }
 
         public void ClearList()
         {
             alReadyCollidedWith.Clear(); // Clear the list of collided objects
+            alReadyCollidedWith.Add(myColiider); // Add the character controller to the list to avoid self-collision
         }
     }
 }

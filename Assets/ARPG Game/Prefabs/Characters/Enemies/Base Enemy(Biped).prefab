@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8652009298197633671}
   - component: {fileID: 3672594638104163790}
   - component: {fileID: 7150544562099695409}
+  - component: {fileID: 210882387496130066}
   - component: {fileID: 5845510654670499472}
   - component: {fileID: 4938142233657108066}
   - component: {fileID: 8503222672961602405}
@@ -110,6 +111,28 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &210882387496130066
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412694043705614442}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 0
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!54 &5845510654670499472
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,13 +173,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CharController>k__BackingField: {fileID: 0}
+  <NavAgent>k__BackingField: {fileID: 0}
   <Animator>k__BackingField: {fileID: 0}
   <ForceReciever>k__BackingField: {fileID: 0}
   <WeaponHandler>k__BackingField: {fileID: 0}
   <Player>k__BackingField: {fileID: 0}
   <PlayerChasingRange>k__BackingField: 5
+  <PlayerAttackingRange>k__BackingField: 2
+  <Damage>k__BackingField: 5
+  <AttackKnockback>k__BackingField: 20
+  <ChaseMovementSpeed>k__BackingField: 5
+  <PatrolMovementSpeed>k__BackingField: 4
   <CrossFadeDampTime>k__BackingField: 0.1
   <AnimatorDampTime>k__BackingField: 0.1
+  rotationDampTime: 0.1
 --- !u!114 &8503222672961602405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  navAgent: {fileID: 210882387496130066}
   ImpactSmoothTime: 0.1
 --- !u!114 &1618584124101269806
 MonoBehaviour:
@@ -210,3 +241,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0

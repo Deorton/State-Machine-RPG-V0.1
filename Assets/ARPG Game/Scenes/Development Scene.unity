@@ -688,6 +688,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard A
       objectReference: {fileID: 0}
+    - target: {fileID: 3802364902791981180, guid: 79cdb00a95f58ef4ebc8fadc4495905a, type: 3}
+      propertyPath: m_Speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263626904284665868, guid: 79cdb00a95f58ef4ebc8fadc4495905a, type: 3}
+      propertyPath: <Damage>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3045,6 +3053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!54 &1566946279545110379
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -24,11 +24,12 @@ public class EnemyIdleState : EnemyBaseState
         Move(deltaTime);
 
         // Check if the player is in range to chase
-        if(IsPlayerInChasingRange())
+        if(IsPlayerInRange(stateMachine.PlayerChasingRange))
         {
-        //    stateMachine.SwitchState(new EnemyChaseState(stateMachine));
+            stateMachine.SwitchState(new EnemyChaseState(stateMachine));
             return;
         }
+       
         stateMachine.Animator.SetFloat(SpeedHash, 0f, stateMachine.AnimatorDampTime, deltaTime);
     }
 
