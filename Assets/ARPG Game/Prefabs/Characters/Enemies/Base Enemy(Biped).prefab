@@ -175,12 +175,14 @@ MonoBehaviour:
   <CharController>k__BackingField: {fileID: 0}
   <NavAgent>k__BackingField: {fileID: 0}
   <Animator>k__BackingField: {fileID: 0}
+  <Health>k__BackingField: {fileID: 0}
   <ForceReciever>k__BackingField: {fileID: 0}
   <WeaponHandler>k__BackingField: {fileID: 0}
   <Player>k__BackingField: {fileID: 0}
   <PlayerChasingRange>k__BackingField: 5
   <PlayerAttackingRange>k__BackingField: 2
   <Damage>k__BackingField: 5
+  <StunTime>k__BackingField: 1
   <AttackKnockback>k__BackingField: 20
   <ChaseMovementSpeed>k__BackingField: 5
   <PatrolMovementSpeed>k__BackingField: 4

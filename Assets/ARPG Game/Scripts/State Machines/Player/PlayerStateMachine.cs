@@ -12,8 +12,10 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
     [field: SerializeField] public AttackData[] AttackDatas { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
-    
+
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
+    
+    [field: SerializeField] public float StunTime { get; private set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
     [field: SerializeField] public float CrossFadeDampTime { get; private set; }
 
@@ -49,8 +51,8 @@ public class PlayerStateMachine : StateMachine
         Health.OnTakeDamage -= OnTakeDamage;
     }
 
-    private void OnTakeDamage()
+    private void OnTakeDamage(float stunTime)
     {
-        SwitchState(new PlayerImpactState(this));
+        SwitchState(new PlayerImpactState(this, stunTime));
     }
 }

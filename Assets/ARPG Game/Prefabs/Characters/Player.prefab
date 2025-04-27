@@ -1360,7 +1360,8 @@ Transform:
   m_LocalPosition: {x: -0.087, y: 0.029, z: 0.032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8282640490300512535}
   m_Father: {fileID: 6485315939204594078}
   m_LocalEulerAnglesHint: {x: 65.027, y: -276.224, z: -271.722}
 --- !u!1 &3511938075120311484
@@ -2270,7 +2271,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0.6
     <ForceTime>k__BackingField: 0.35
     <ForceAmount>k__BackingField: 10
-    <BaseDamage>k__BackingField: 5
+    <BaseDamage>k__BackingField: 10
     <Knockback>k__BackingField: 5
   - <AnimationName>k__BackingField: Attack 2
     <TransitionDuration>k__BackingField: 0.1
@@ -2278,7 +2279,7 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0.5
     <ForceTime>k__BackingField: 0.35
     <ForceAmount>k__BackingField: 10
-    <BaseDamage>k__BackingField: 10
+    <BaseDamage>k__BackingField: 15
     <Knockback>k__BackingField: 10
   - <AnimationName>k__BackingField: Attack 3
     <TransitionDuration>k__BackingField: 0.2
@@ -2286,9 +2287,11 @@ MonoBehaviour:
     <ComboAttackTime>k__BackingField: 0
     <ForceTime>k__BackingField: 0.35
     <ForceAmount>k__BackingField: 15
-    <BaseDamage>k__BackingField: 15
+    <BaseDamage>k__BackingField: 20
     <Knockback>k__BackingField: 15
+  <Health>k__BackingField: {fileID: 0}
   <FreeLookMovementSpeed>k__BackingField: 6
+  <StunTime>k__BackingField: 1
   <TargetingMovementSpeed>k__BackingField: 4
   <CrossFadeDampTime>k__BackingField: 0.1
   animatorDampTime: 0.1
@@ -4158,3 +4161,65 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.10586798, y: 0.0064922944, z: 0.000026717782}
     m_Extent: {x: 0.10386908, y: 0.11458095, z: 0.10106465}
   m_DirtyAABB: 0
+--- !u!1001 &1387804013986494390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5304127876261345461}
+    m_Modifications:
+    - target: {fileID: 7040148494239150721, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_Name
+      value: Sword01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+--- !u!4 &8282640490300512535 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7040148494239641249, guid: a40ba6ff203777240970772d3d71f23e, type: 3}
+  m_PrefabInstance: {fileID: 1387804013986494390}
+  m_PrefabAsset: {fileID: 0}

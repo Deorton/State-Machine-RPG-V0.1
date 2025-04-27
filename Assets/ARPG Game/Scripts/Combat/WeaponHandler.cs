@@ -10,6 +10,7 @@ public class WeaponHandler : MonoBehaviour
 
     private float damage; // Default damage value
     private float Knockback;
+    private float stunTime; // Default stun time value
     
     public void setCurrentWeapon(Weapon weapon)
     {
@@ -52,6 +53,11 @@ public class WeaponHandler : MonoBehaviour
         Knockback = knockback; // Set the knockback value from the AttackData component
     }
 
+    public void SetStunTime(float stunTime)
+    {
+        this.stunTime = stunTime; // Set the stun time value from the AttackData component
+    }
+
     public float GetDamage()
     {
         return damage; // Return the damage value
@@ -61,4 +67,9 @@ public class WeaponHandler : MonoBehaviour
     {
         return Knockback; // Return the damage value
     }  
+
+    public float GetStunTime()
+    {
+        return stunTime; // Return the stun time value
+    }
 }

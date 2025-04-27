@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     public float currentHealth;
 
-    public event Action OnTakeDamage;
+    public event Action<float> OnTakeDamage;
     private bool isDead = false;
     // Start is called before the first frame update
     void Start()
@@ -22,12 +22,12 @@ public class Health : MonoBehaviour
         
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, float stunTime)
     {
         if (isDead) return;
 
         currentHealth = Mathf.Max(currentHealth - damage, 0);
-        OnTakeDamage?.Invoke();
+        OnTakeDamage?.Invoke(stunTime);
         Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
 
         if (currentHealth == 0)

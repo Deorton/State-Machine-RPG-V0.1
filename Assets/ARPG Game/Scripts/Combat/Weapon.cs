@@ -17,6 +17,7 @@ namespace ARPGGame.Combat
         public List<Collider> alReadyCollidedWith = new List<Collider>();
         private float damage; // Default damage value
         private float knockback; // Default knockback value
+        private float stunTime; // Default stun time value
 
         void Awake()
         {
@@ -47,7 +48,8 @@ namespace ARPGGame.Combat
             if(other.TryGetComponent<Health>(out Health health)) // Check if the other object has a Health component
             {
                 damage = weaponHandler.GetDamage(); // Get the base damage from the AttackData component
-                health.TakeDamage(damage); // Call the TakeDamage method on the Health component
+                stunTime = weaponHandler.GetStunTime(); // Get the stun time from the AttackData component
+                health.TakeDamage(damage, stunTime); // Call the TakeDamage method on the Health component
             }
 
             if(other.TryGetComponent<ForceReciever>(out ForceReciever forceReciever)) // Check if the other object has a ForceReciever component

@@ -7,8 +7,9 @@ public class PlayerImpactState : PlayerBaseState
     private readonly int ImpactHash = Animator.StringToHash("Knockback");
     private float impactDuration = 1f; // Duration of the impact animation
 
-    public PlayerImpactState(PlayerStateMachine stateMachine) : base(stateMachine)
+    public PlayerImpactState(PlayerStateMachine stateMachine, float stunTime) : base(stateMachine)
     {
+        impactDuration = stunTime; // Set the impact duration based on the stun time received
     }
 
     public override void Enter()

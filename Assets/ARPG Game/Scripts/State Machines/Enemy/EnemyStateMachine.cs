@@ -15,6 +15,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public float PlayerAttackingRange { get; private set; }
     [field: SerializeField] public float Damage { get; private set; }
+    [field: SerializeField] public float StunTime { get; private set; }
     [field: SerializeField] public float AttackKnockback { get; private set; }
     [field: SerializeField] public float ChaseMovementSpeed { get; private set; }
     [field: SerializeField] public float PatrolMovementSpeed { get; private set; }
@@ -57,9 +58,9 @@ public class EnemyStateMachine : StateMachine
         Health.OnTakeDamage -= OnTakeDamage;
     }
 
-    private void OnTakeDamage()
+    private void OnTakeDamage(float stunTime)
     {
-        SwitchState(new EnemyImpactState(this));
+        SwitchState(new EnemyImpactState(this, stunTime));
     }
 
     void OnDrawGizmosSelected()

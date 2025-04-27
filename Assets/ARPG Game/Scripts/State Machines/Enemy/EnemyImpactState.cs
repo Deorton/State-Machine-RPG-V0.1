@@ -8,8 +8,9 @@ public class EnemyImpactState : EnemyBaseState
 
     private float impactDuration = 1f; // Duration of the impact animation
 
-    public EnemyImpactState(EnemyStateMachine stateMachine) : base(stateMachine)
+    public EnemyImpactState(EnemyStateMachine stateMachine, float stunTime) : base(stateMachine)
     {
+        impactDuration = stunTime; // Set the impact duration based on the stun time received
     }
 
     public override void Enter()
