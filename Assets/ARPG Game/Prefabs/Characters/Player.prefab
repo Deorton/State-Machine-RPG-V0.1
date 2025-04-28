@@ -560,7 +560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118164140463023392}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.07744452, y: 0.18787648, z: -0.014861725, w: -0.9790219}
+  m_LocalRotation: {x: 0.17988543, y: 0, z: 0, w: 0.9836876}
   m_LocalPosition: {x: -0.7239466, y: 0.38617134, z: -6.27897}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -603,8 +603,8 @@ MonoBehaviour:
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
   m_Transitions:
-    m_BlendHint: 0
-    m_InheritPosition: 0
+    m_BlendHint: 2
+    m_InheritPosition: 1
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -908,7 +908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482546960281588479}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06437577, y: -0.18377686, z: 0.041767422, w: -0.9799681}
+  m_LocalRotation: {x: -0.03632499, y: 0.000000028238324, z: -0.000000009527638, w: 0.9993401}
   m_LocalPosition: {x: -0.00000044296414, y: 0.000000027751884, z: 0.00000017431661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1767,8 +1767,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 0
+  m_VerticalDamping: 0.2
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -1804,9 +1804,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 1
   m_FollowOffset: {x: 0, y: 1.5, z: -4}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0.2
+  m_YDamping: 0.2
+  m_ZDamping: 0.2
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -2040,8 +2040,8 @@ MonoBehaviour:
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:
-    m_Style: 1
-    m_Time: 0.5
+    m_Style: 2
+    m_Time: 0.25
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -2059,6 +2059,36 @@ MonoBehaviour:
   - m_Hash: -1203195401
     m_ParentHash: 585382737
   - m_Hash: -479991077
+    m_ParentHash: 756556552
+  - m_Hash: -1707882870
+    m_ParentHash: -479991077
+  - m_Hash: -775490078
+    m_ParentHash: -479991077
+  - m_Hash: 409825738
+    m_ParentHash: -479991077
+  - m_Hash: -99617054
+    m_ParentHash: -479991077
+  - m_Hash: -1150859894
+    m_ParentHash: -479991077
+  - m_Hash: -1108569793
+    m_ParentHash: -479991077
+  - m_Hash: -355473564
+    m_ParentHash: -479991077
+  - m_Hash: 375469053
+    m_ParentHash: -479991077
+  - m_Hash: -1236239285
+    m_ParentHash: -479991077
+  - m_Hash: -274583130
+    m_ParentHash: 756556552
+  - m_Hash: -741219943
+    m_ParentHash: 756556552
+  - m_Hash: 1990942748
+    m_ParentHash: 756556552
+  - m_Hash: 28070026
+    m_ParentHash: 756556552
+  - m_Hash: 182678273
+    m_ParentHash: 756556552
+  - m_Hash: -946407516
     m_ParentHash: 756556552
 --- !u!1 &3824543278289778012
 GameObject:
@@ -2661,8 +2691,8 @@ MonoBehaviour:
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
   m_Transitions:
-    m_BlendHint: 0
-    m_InheritPosition: 0
+    m_BlendHint: 2
+    m_InheritPosition: 1
     m_OnCameraLive:
       m_PersistentCalls:
         m_Calls: []
@@ -2693,7 +2723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5042739757415975575}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.08214321, y: -0.1829889, z: 0.045094524, w: -0.97863895}
+  m_LocalRotation: {x: -0.018189518, y: 0.000000028060828, z: -0.000000010038354, w: 0.9998346}
   m_LocalPosition: {x: -0.00000044296414, y: 0.000000027751884, z: 0.00000017431661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2935,8 +2965,11 @@ MonoBehaviour:
   <Health>k__BackingField: {fileID: 0}
   <Ragdoll>k__BackingField: {fileID: 0}
   <FreeLookMovementSpeed>k__BackingField: 6
-  <StunTime>k__BackingField: 1
   <TargetingMovementSpeed>k__BackingField: 4
+  <StunTime>k__BackingField: 1
+  <DodgeDuration>k__BackingField: 0.2
+  <DodgeDistance>k__BackingField: 1
+  <DodgeCooldown>k__BackingField: 1
   <CrossFadeDampTime>k__BackingField: 0.1
   animatorDampTime: 0.1
   rotationDampTime: 10
@@ -2995,6 +3028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  isDead: 0
 --- !u!114 &723056031763362328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4783,7 +4817,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8907083252331718214}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09993056, y: -0.18213835, z: 0.048415538, w: -0.97698283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.00000044296414, y: 0.000000027751884, z: 0.00000017431661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStateMachine : StateMachine
 {
+    [field: Header("References")]
     [field: SerializeField] public CharacterController PlayerController { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public InputReader InputReader { get; private set; }
@@ -13,16 +14,25 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public AttackData[] AttackDatas { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
-
-    [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
-    
-    [field: SerializeField] public float StunTime { get; private set; }
-    [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
-    [field: SerializeField] public float CrossFadeDampTime { get; private set; }
-
     public Transform MainCameraTransform { get; private set; }
+
+    [field: Header("Movement Settings")]
+    [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
+    [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
+    [field: SerializeField] public float StunTime { get; private set; }
+    
+    [field: Header("Dodge Settings")]
+    [field: SerializeField] public float DodgeDuration { get; private set; }
+    [field: SerializeField] public float DodgeDistance { get; private set; }
+    public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
+    [field: SerializeField] public float DodgeCooldown { get; private set; }
+
+    [field: Header("Animator Settings")]
+    [field: SerializeField] public float CrossFadeDampTime { get; private set; }
     public float animatorDampTime = 0.1f;
     public float rotationDampTime = 0.1f;
+    
+    
 
     void Awake()
     {
@@ -63,5 +73,10 @@ public class PlayerStateMachine : StateMachine
     private void HandleDie()
     {
         SwitchState(new PlayerDeadState(this));
+    }
+
+    public void SetDodgeTime(float dodgeTime)
+    {
+        PreviousDodgeTime = dodgeTime;
     }
 }
