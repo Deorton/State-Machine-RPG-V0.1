@@ -12,7 +12,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public ForceReciever ForceReciever { get; private set; }
     [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
     [field: SerializeField] public Target Target { get; private set; }
-    [field: SerializeField] public GameObject Player { get; private set; }
+    [field: SerializeField] public Health Player { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public float PlayerAttackingRange { get; private set; }
@@ -37,7 +37,7 @@ public class EnemyStateMachine : StateMachine
         Target = GetComponent<Target>();
         Ragdoll = GetComponent<Ragdoll>();
 
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         if (Player == null)
         {
             Debug.LogError("Player not found in the scene. Make sure the player has the 'Player' tag.");

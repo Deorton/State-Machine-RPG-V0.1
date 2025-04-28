@@ -7,11 +7,12 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
     public float currentHealth;
+    private bool isInvulnerable = false;
 
     public event Action<float> OnTakeDamage;
     public event Action OnDie;
 
-    private bool isDead = false;
+    public bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +26,15 @@ public class Health : MonoBehaviour
         
     }
 
+    public void SetInvulnerable(bool isInvulnerable)
+    {
+        this.isInvulnerable = isInvulnerable;
+    }
+
     public void TakeDamage(float damage, float stunTime)
     {
         if (isDead) return;
+        if (isInvulnerable) return;
 
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         OnTakeDamage?.Invoke(stunTime);

@@ -24,6 +24,7 @@ public abstract class EnemyBaseState : State
 
     protected bool IsPlayerInRange(float range)
     {
+        if(stateMachine.Player.isDead) { return false; }
         return Vector3.Distance(stateMachine.transform.position, stateMachine.Player.transform.position) <= range;
     }
 
