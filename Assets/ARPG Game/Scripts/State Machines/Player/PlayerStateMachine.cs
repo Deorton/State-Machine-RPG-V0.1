@@ -20,6 +20,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
     [field: SerializeField] public float StunTime { get; private set; }
+    [field: SerializeField] public float JumpForce { get; private set; }
     
     [field: Header("Dodge Settings")]
     [field: SerializeField] public float DodgeDuration { get; private set; }

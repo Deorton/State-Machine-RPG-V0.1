@@ -87,7 +87,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void OnJump()
     {
-        Debug.Log("Jumping!"); 
+        stateMachine.SwitchState(new PlayerJumpingState(stateMachine)); 
     }
 
     private void OnDodge()
