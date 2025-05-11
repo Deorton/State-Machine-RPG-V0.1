@@ -92,7 +92,9 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void OnDodge()
     {
-        Debug.Log("Dodging!");
+        if(stateMachine.InputReader.MovementValue == Vector2.zero){ return; }
+        
+        stateMachine.SwitchState(new PlayerDodgingState(stateMachine, stateMachine.InputReader.MovementValue));
     }
 }
 

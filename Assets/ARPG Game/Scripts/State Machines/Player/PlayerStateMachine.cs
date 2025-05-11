@@ -14,6 +14,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public AttackData[] AttackDatas { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+    [field: SerializeField] public LedgeDetector LedgeDetector { get; private set; }
     public Transform MainCameraTransform { get; private set; }
 
     [field: Header("Movement Settings")]
@@ -26,7 +27,6 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float DodgeDuration { get; private set; }
     [field: SerializeField] public float DodgeDistance { get; private set; }
     public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
-    [field: SerializeField] public float DodgeCooldown { get; private set; }
 
     [field: Header("Animator Settings")]
     [field: SerializeField] public float CrossFadeDampTime { get; private set; }
@@ -46,6 +46,7 @@ public class PlayerStateMachine : StateMachine
         WeaponHandler = GetComponent<WeaponHandler>();
         Health = GetComponent<Health>();
         Ragdoll = GetComponent<Ragdoll>();
+        LedgeDetector = GetComponentInChildren<LedgeDetector>();
     }
 
     // Start is called before the first frame update
@@ -74,10 +75,5 @@ public class PlayerStateMachine : StateMachine
     private void HandleDie()
     {
         SwitchState(new PlayerDeadState(this));
-    }
-
-    public void SetDodgeTime(float dodgeTime)
-    {
-        PreviousDodgeTime = dodgeTime;
     }
 }
