@@ -32,6 +32,11 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float CrossFadeDampTime { get; private set; }
     public float animatorDampTime = 0.1f;
     public float rotationDampTime = 0.1f;
+
+    [field: Header("Pullup Location Settings")]
+    public float Xpos = 0.0f;
+    public float Ypos = 2.325f;
+    public float Zpos = 0.65f;
     
     
 

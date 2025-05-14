@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,9 @@ public class PlayerLandingState : PlayerBaseState
         momentum = stateMachine.PlayerController.velocity;
         momentum.y = 0f;
 
-        stateMachine.Animator.CrossFadeInFixedTime(LandingHash, stateMachine.CrossFadeDampTime); 
+        stateMachine.Animator.CrossFadeInFixedTime(LandingHash, stateMachine.CrossFadeDampTime);
+        
+        stateMachine.LedgeDetector.OnLedgeDetected += HandleLedgeDetected;
     }
 
     public override void Tick(float deltaTime)
@@ -34,5 +37,11 @@ public class PlayerLandingState : PlayerBaseState
 
     public override void Exit()
     {
+        stateMachine.LedgeDetector.OnLedgeDetected -= HandleLedgeDetected;
+    }
+
+    private void HandleLedgeDetected(Vector3 closestPoint, Vector3 ledgeForward)
+    {
+        stateMachine.SwitchState(new PlayerHangingState(stateMachine, closestPoint, ledgeForward));
     }
 }

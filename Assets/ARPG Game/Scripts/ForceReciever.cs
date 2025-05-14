@@ -61,4 +61,15 @@ public class ForceReciever : MonoBehaviour
     {
         verticalVelocity += jumpForce;
     }
+
+    public void Reset()
+    {
+        impact = Vector3.zero;
+        verticalVelocity = 0f;
+
+    //    if (navAgent != null)
+    //    {
+    //        navAgent.enabled = true; // Re-enable NavMeshAgent when resetting
+    //    }
+    }
 }
