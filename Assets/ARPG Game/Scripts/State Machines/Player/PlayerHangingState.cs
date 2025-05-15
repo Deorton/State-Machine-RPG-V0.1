@@ -18,7 +18,11 @@ public class PlayerHangingState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.transform.rotation = Quaternion.LookRotation(ledgeForward);
-    //    stateMachine.transform.position = closestPoint;
+        
+        stateMachine.PlayerController.enabled = false;
+        stateMachine.transform.position = closestPoint - (stateMachine.LedgeDetector.transform.position - stateMachine.transform.position);
+        stateMachine.PlayerController.enabled = true;
+
         stateMachine.Animator.CrossFadeInFixedTime(HangingHash, stateMachine.CrossFadeDampTime);
     }
 

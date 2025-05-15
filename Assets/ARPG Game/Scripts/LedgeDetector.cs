@@ -9,6 +9,6 @@ public class LedgeDetector : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        OnLedgeDetected?.Invoke(other.ClosestPoint(transform.position), other.transform.forward);
+        OnLedgeDetected?.Invoke(other.ClosestPointOnBounds(transform.position), other.transform.forward);
     }
 }

@@ -57,6 +57,7 @@ public class PlayerStateMachine : StateMachine
     // Start is called before the first frame update
     void Start()
     {
+        LockCursor();
         SwitchState(new PlayerFreeLookState(this));
     }
 
@@ -80,5 +81,11 @@ public class PlayerStateMachine : StateMachine
     private void HandleDie()
     {
         SwitchState(new PlayerDeadState(this));
+    }
+
+    public void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
