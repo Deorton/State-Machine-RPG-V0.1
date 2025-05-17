@@ -20,6 +20,9 @@ public class EnemyPatrolState : EnemyBaseState
 
     public override void Enter()
     {
+        stateMachine.NavAgent.updatePosition = true;
+        stateMachine.NavAgent.updateRotation = true;
+
         stateMachine.Animator.CrossFadeInFixedTime(LocomotionBlendTreeHash, stateMachine.CrossFadeDampTime);
         waitTime = stateMachine.WaypointDwellTime;
         _currentWaypointIndex = stateMachine._currentWaypointIndex;
@@ -28,7 +31,6 @@ public class EnemyPatrolState : EnemyBaseState
     public override void Tick(float deltaTime)
     {
         timer += deltaTime;
-        Move(deltaTime);
 
         if (IsPlayerInRange(stateMachine.PlayerChasingRange))
         {
@@ -40,7 +42,10 @@ public class EnemyPatrolState : EnemyBaseState
         
         if(timer < waitTime)
         {
-            stateMachine.Animator.SetFloat(SpeedHash, 0f, stateMachine.AnimatorDampTime, deltaTime);
+            if (stateMachine.NavAgent.velocity.magnitude <= 0.6f)
+            {
+                stateMachine.Animator.SetFloat(SpeedHash, 0f, stateMachine.AnimatorDampTime, deltaTime);
+            }
             return;
         }
 
@@ -69,7 +74,8 @@ public class EnemyPatrolState : EnemyBaseState
 
     public override void Exit()
     {
-
+        stateMachine.NavAgent.updatePosition = false;
+        stateMachine.NavAgent.updateRotation = false;
     }
 
     private bool AtWaypoint()
