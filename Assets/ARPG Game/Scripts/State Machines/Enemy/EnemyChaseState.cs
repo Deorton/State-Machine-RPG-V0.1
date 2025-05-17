@@ -31,6 +31,10 @@ public class EnemyChaseState : EnemyBaseState
             {
                 stateMachine.SwitchState(new EnemyGaurdState(stateMachine));
             }
+            else if(stateMachine.CanPatrol)
+            {
+                stateMachine.SwitchState(new EnemyPatrolState(stateMachine));
+            }
             else
             {
                 stateMachine.SwitchState(new EnemyIdleState(stateMachine));

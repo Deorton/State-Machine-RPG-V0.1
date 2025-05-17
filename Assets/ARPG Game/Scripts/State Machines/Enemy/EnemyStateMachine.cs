@@ -15,6 +15,7 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Target Target { get; private set; }
     [field: SerializeField] public Health Player { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+    [field: SerializeField] public PatrolPath PatrolPath { get; private set; }
 
     [field: Header("Enemy Ranges")]
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
@@ -35,7 +36,11 @@ public class EnemyStateMachine : StateMachine
 
     [field: Header("Enemy Ability Settings")]
     [field: SerializeField] public bool IsGaurding { get; private set; }
+    [field: SerializeField] public bool CanPatrol { get; private set; }
     [field: SerializeField] public float SuspicionTime { get; private set; }
+    [field: SerializeField] public float WaypointDwellTime { get; private set; }
+
+    public int _currentWaypointIndex = 0;
     public Vector3 _guardPosition;
     public Vector3 _guardRotation;
 
@@ -67,9 +72,13 @@ public class EnemyStateMachine : StateMachine
         NavAgent.updatePosition = false;
         NavAgent.updateRotation = false;
 
-        if(IsGaurding)
+        if (IsGaurding)
         {
             SwitchState(new EnemyGaurdState(this));
+        }
+        else if (CanPatrol)
+        {
+            SwitchState(new EnemyPatrolState(this));
         }
         else
         {
