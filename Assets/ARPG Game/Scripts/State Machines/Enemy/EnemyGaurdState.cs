@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class EnemyGaurdState : EnemyBaseState
@@ -7,7 +8,8 @@ public class EnemyGaurdState : EnemyBaseState
     private readonly int LocomotionBlendTreeHash = Animator.StringToHash("Locomotion");
     private readonly int SpeedHash = Animator.StringToHash("Speed");
 
-    
+    private float waitTime = 0f;
+    private float timer = 0f;
 
     public EnemyGaurdState(EnemyStateMachine stateMachine) : base(stateMachine)
     {
@@ -16,24 +18,49 @@ public class EnemyGaurdState : EnemyBaseState
     public override void Enter()
     {
         stateMachine.Animator.CrossFadeInFixedTime(LocomotionBlendTreeHash, stateMachine.CrossFadeDampTime);
+        timer = 0f;
+        waitTime = stateMachine.SuspicionTime;
     }
 
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
 
+        timer += deltaTime;
+
         // Check if the player is in range to chase
-        if(IsPlayerInRange(stateMachine.PlayerChasingRange))
+        if (IsPlayerInRange(stateMachine.PlayerChasingRange))
         {
             stateMachine.SwitchState(new EnemyChaseState(stateMachine));
             return;
         }
-        
-        if (Vector3.Distance (stateMachine.NavAgent.transform.position, stateMachine._guardPosition) <= stateMachine.NavAgent.stoppingDistance) 
+
+        if(timer < waitTime)
         {
             stateMachine.Animator.SetFloat(SpeedHash, 0f, stateMachine.AnimatorDampTime, deltaTime);
-            
-            if(stateMachine.transform.rotation != Quaternion.Euler(stateMachine._guardRotation))
+            return;
+        }
+
+        if (timer >= waitTime)
+        {
+            ReturnToPost(deltaTime);
+            ReturnToGaurdingLocation(deltaTime);
+        }
+        
+    }
+
+    public override void Exit()
+    {
+        
+    }
+
+    private void ReturnToPost(float deltaTime)
+    {
+        if (Vector3.Distance(stateMachine.NavAgent.transform.position, stateMachine._guardPosition) <= stateMachine.NavAgent.stoppingDistance)
+        {
+            stateMachine.Animator.SetFloat(SpeedHash, 0f, stateMachine.AnimatorDampTime, deltaTime);
+
+            if (stateMachine.transform.rotation != Quaternion.Euler(stateMachine._guardRotation))
             {
                 ReturnToGaurdPosition();
             }
@@ -43,13 +70,6 @@ public class EnemyGaurdState : EnemyBaseState
             FacePoint(stateMachine._guardPosition);
             stateMachine.Animator.SetFloat(SpeedHash, 1f, stateMachine.AnimatorDampTime, deltaTime);
         }
-
-        ReturnToGaurdingLocation(deltaTime);
-    }
-
-    public override void Exit()
-    {
-        
     }
 
     private void ReturnToGaurdingLocation(float deltaTime)

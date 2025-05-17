@@ -35,6 +35,7 @@ public class EnemyStateMachine : StateMachine
 
     [field: Header("Enemy Ability Settings")]
     [field: SerializeField] public bool IsGaurding { get; private set; }
+    [field: SerializeField] public float SuspicionTime { get; private set; }
     public Vector3 _guardPosition;
     public Vector3 _guardRotation;
 
