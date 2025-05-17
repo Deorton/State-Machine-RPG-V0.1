@@ -3307,6 +3307,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4938142233657108066, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
+      propertyPath: <Damage>k__BackingField
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938142233657108066, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
+      propertyPath: <AttackKnockback>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938142233657108066, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
       propertyPath: <AnimatorDampTime>k__BackingField
       value: 0.1
       objectReference: {fileID: 0}
@@ -3317,6 +3325,10 @@ PrefabInstance:
     - target: {fileID: 4938142233657108066, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
       propertyPath: <PlayerChasingRange>k__BackingField
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938142233657108066, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
+      propertyPath: <PlayerAttackingRange>k__BackingField
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7150544562099695409, guid: fabf6b4b3b2123e4981d9eaa91080621, type: 3}
       propertyPath: m_Radius

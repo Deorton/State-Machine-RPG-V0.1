@@ -14,9 +14,7 @@ public class EnemyIdleState : EnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("Enter Idle State");
         stateMachine.Animator.CrossFadeInFixedTime(LocomotionBlendTreeHash, stateMachine.CrossFadeDampTime);
-        
     }
 
     public override void Tick(float deltaTime)

@@ -28,7 +28,15 @@ public class EnemyChaseState : EnemyBaseState
 
         if(!IsPlayerInRange(stateMachine.PlayerChasingRange))
         {
-            stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            if(stateMachine.IsGaurding)
+            {
+                stateMachine.SwitchState(new EnemyGaurdState(stateMachine));
+            }
+            else
+            {
+                stateMachine.SwitchState(new EnemyIdleState(stateMachine));
+            }
+            
             return;
         }
 

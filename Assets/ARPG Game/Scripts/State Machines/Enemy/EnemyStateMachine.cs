@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : StateMachine
 {
+    [field: Header("Enemy Components")]
     [field: SerializeField] public CharacterController CharController { get; private set; }
     [field: SerializeField] public  NavMeshAgent NavAgent { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
@@ -14,15 +15,28 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public Target Target { get; private set; }
     [field: SerializeField] public Health Player { get; private set; }
     [field: SerializeField] public Ragdoll Ragdoll { get; private set; }
+
+    [field: Header("Enemy Ranges")]
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
     [field: SerializeField] public float PlayerAttackingRange { get; private set; }
+
+    [field: Header("Enemy Attack Stats")]
     [field: SerializeField] public float Damage { get; private set; }
     [field: SerializeField] public float StunTime { get; private set; }
     [field: SerializeField] public float AttackKnockback { get; private set; }
+
+    [field: Header("Enemy Movement Speeds")]
     [field: SerializeField] public float ChaseMovementSpeed { get; private set; }
     [field: SerializeField] public float PatrolMovementSpeed { get; private set; }
+
+    [field: Header("Enemy Animation Times")]
     [field: SerializeField] public float CrossFadeDampTime { get; private set; }
     [field: SerializeField] public float AnimatorDampTime { get; private set; }
+
+    [field: Header("Enemy Ability Settings")]
+    [field: SerializeField] public bool IsGaurding { get; private set; }
+    public Vector3 _guardPosition;
+    public Vector3 _guardRotation;
 
     public float rotationDampTime = 0.1f;
 
@@ -42,6 +56,9 @@ public class EnemyStateMachine : StateMachine
         {
             Debug.LogError("Player not found in the scene. Make sure the player has the 'Player' tag.");
         }
+
+        _guardPosition = transform.position;
+        _guardRotation = transform.eulerAngles;
     }
 
     void Start()
@@ -49,7 +66,14 @@ public class EnemyStateMachine : StateMachine
         NavAgent.updatePosition = false;
         NavAgent.updateRotation = false;
 
-        SwitchState(new EnemyIdleState(this));
+        if(IsGaurding)
+        {
+            SwitchState(new EnemyGaurdState(this));
+        }
+        else
+        {
+            SwitchState(new EnemyIdleState(this));
+        }
     }
 
     void OnEnable()

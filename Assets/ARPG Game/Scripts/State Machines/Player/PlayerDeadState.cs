@@ -12,6 +12,7 @@ public class PlayerDeadState : PlayerBaseState
     {
         stateMachine.Ragdoll.ToggleRagdoll(true); // Enable ragdoll physics
         stateMachine.WeaponHandler.GetWeapon().gameObject.SetActive(false);
+        stateMachine.PlayerController.enabled = false; // Disable player movement
     }
 
     public override void Tick(float deltaTime)

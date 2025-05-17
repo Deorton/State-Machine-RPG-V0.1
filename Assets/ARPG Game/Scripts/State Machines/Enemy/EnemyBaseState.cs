@@ -22,6 +22,15 @@ public abstract class EnemyBaseState : State
         stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, targetRotation, stateMachine.rotationDampTime);
     }
 
+    protected void FacePoint(Vector3 WhatTOFace)
+    {
+        Vector3 directionToTarget = WhatTOFace - stateMachine.transform.position;
+        directionToTarget.y = 0f;
+
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        stateMachine.transform.rotation = Quaternion.Slerp(stateMachine.transform.rotation, targetRotation, stateMachine.rotationDampTime);
+    }
+
     protected bool IsPlayerInRange(float range)
     {
         if(stateMachine.Player.isDead) { return false; }
