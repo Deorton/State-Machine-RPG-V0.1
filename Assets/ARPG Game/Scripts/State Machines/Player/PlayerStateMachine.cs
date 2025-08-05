@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Attibutes;
 using UnityEngine;
 
 public class PlayerStateMachine : StateMachine

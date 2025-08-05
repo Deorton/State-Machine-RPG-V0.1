@@ -3,54 +3,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+namespace ARPG.Attibutes
 {
-    [SerializeField] private float maxHealth = 100f;
-    public float currentHealth;
-    private bool isInvulnerable = false;
-
-    public event Action<float> OnTakeDamage;
-    public event Action OnDie;
-
-    public bool isDead = false;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Health : MonoBehaviour
     {
-        currentHealth = maxHealth;
-    }
+        [SerializeField] private float maxHealth = 100f;
+        public float currentHealth;
+        private bool isInvulnerable = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public event Action<float> OnTakeDamage;
+        public event Action OnDie;
 
-    public void SetInvulnerable(bool isInvulnerable)
-    {
-        this.isInvulnerable = isInvulnerable;
-    }
+        public bool isDead = false;
 
-    public void TakeDamage(float damage, float stunTime)
-    {
-        if (isDead) return;
-        if (isInvulnerable) return;
+        // Start is called before the first frame update
+        void Start()
+        {
+            currentHealth = maxHealth;
+        }
 
-        currentHealth = Mathf.Max(currentHealth - damage, 0);
-        OnTakeDamage?.Invoke(stunTime);
-    //    Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
+        // Update is called once per frame
+        void Update()
+        {
 
-        if (currentHealth == 0)
+        }
+
+        public void SetInvulnerable(bool isInvulnerable)
+        {
+            this.isInvulnerable = isInvulnerable;
+        }
+
+        public void TakeDamage(float damage, float stunTime)
+        {
+            if (isDead) return;
+            if (isInvulnerable) return;
+
+            currentHealth = Mathf.Max(currentHealth - damage, 0);
+            OnTakeDamage?.Invoke(stunTime);
+            //    Debug.Log($"{gameObject.name} took {damage} damage. Current health: {currentHealth}");
+
+            if (currentHealth == 0)
+            {
+                isDead = true;
+                OnDie?.Invoke();
+            }
+        }
+
+        private void Die()
         {
             isDead = true;
-            OnDie?.Invoke();
+            // Add death logic here (e.g., play animation, disable character, etc.)
+            Debug.Log($"{gameObject.name} has died.");
         }
-    }
-
-    private void Die()
-    {
-        isDead = true;
-        // Add death logic here (e.g., play animation, disable character, etc.)
-        Debug.Log($"{gameObject.name} has died.");
     }
 }
