@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 815176607514219698}
   - component: {fileID: 1316467142166182610}
   - component: {fileID: 5629995264410645353}
+  - component: {fileID: 6121740363276166487}
   m_Layer: 0
   m_Name: Base Enemy(Biped)
   m_TagString: Untagged
@@ -70,7 +71,7 @@ CharacterController:
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &3672594638104163790
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -84,6 +85,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -182,6 +184,7 @@ MonoBehaviour:
   <Target>k__BackingField: {fileID: 0}
   <Player>k__BackingField: {fileID: 0}
   <Ragdoll>k__BackingField: {fileID: 0}
+  <PatrolPath>k__BackingField: {fileID: 0}
   <PlayerChasingRange>k__BackingField: 5
   <PlayerAttackingRange>k__BackingField: 2
   <Damage>k__BackingField: 5
@@ -191,6 +194,13 @@ MonoBehaviour:
   <PatrolMovementSpeed>k__BackingField: 4
   <CrossFadeDampTime>k__BackingField: 0.1
   <AnimatorDampTime>k__BackingField: 0.1
+  <IsGaurding>k__BackingField: 0
+  <CanPatrol>k__BackingField: 0
+  <SuspicionTime>k__BackingField: 0
+  <WaypointDwellTime>k__BackingField: 0
+  _currentWaypointIndex: 0
+  _guardPosition: {x: 0, y: 0, z: 0}
+  _guardRotation: {x: 0, y: 0, z: 0}
   rotationDampTime: 0.1
 --- !u!114 &8503222672961602405
 MonoBehaviour:
@@ -247,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  isDead: 0
 --- !u!114 &5629995264410645353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,3 +272,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   characterController: {fileID: 0}
+--- !u!114 &6121740363276166487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412694043705614442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5d152ee76f9124f80340a4ebec930a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  characterClass: 1
