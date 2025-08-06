@@ -9,5 +9,11 @@ namespace ARPG.Attibutes
         [Range(1, 101)]
         [SerializeField] int startingLevel = -1;
         [SerializeField] CharacterClass characterClass = CharacterClass.Warrior;
+        [SerializeField] Progression progression = null;
+
+        public float GetHealth()
+        {
+            return progression.GetHealth(characterClass, startingLevel);
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace ARPG.Attibutes
         // Start is called before the first frame update
         void Start()
         {
+            maxHealth = GetComponent<BaseStats>().GetHealth();
             currentHealth = maxHealth;
         }
 
