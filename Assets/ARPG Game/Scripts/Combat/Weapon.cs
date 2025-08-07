@@ -50,7 +50,7 @@ namespace ARPGGame.Combat
             {
                 damage = weaponHandler.GetDamage(); // Get the base damage from the AttackData component
                 stunTime = weaponHandler.GetStunTime(); // Get the stun time from the AttackData component
-                health.TakeDamage(damage, stunTime); // Call the TakeDamage method on the Health component
+                health.TakeDamage(damage, stunTime, weaponHandler.gameObject); // Call the TakeDamage method on the Health component
             }
 
             if(other.TryGetComponent<ForceReciever>(out ForceReciever forceReciever)) // Check if the other object has a ForceReciever component

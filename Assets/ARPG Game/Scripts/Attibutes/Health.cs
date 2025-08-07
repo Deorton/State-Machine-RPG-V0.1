@@ -19,7 +19,7 @@ namespace ARPG.Attibutes
         // Start is called before the first frame update
         void Start()
         {
-            maxHealth = GetComponent<BaseStats>().GetHealth();
+            maxHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
             currentHealth = maxHealth;
         }
 
@@ -28,7 +28,7 @@ namespace ARPG.Attibutes
             this.isInvulnerable = isInvulnerable;
         }
 
-        public void TakeDamage(float damage, float stunTime)
+        public void TakeDamage(float damage, float stunTime, GameObject attacker)
         {
             if (isDead) return;
             if (isInvulnerable) return;
@@ -39,9 +39,16 @@ namespace ARPG.Attibutes
 
             if (currentHealth == 0)
             {
+                AwardExperience(attacker);
+                
                 isDead = true;
                 OnDie?.Invoke();
             }
+        }
+
+        private void AwardExperience(GameObject attacker)
+        {
+            attacker.GetComponent<Experience>()?.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
         }
 
         private void Die()
