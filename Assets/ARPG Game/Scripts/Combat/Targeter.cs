@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ARPG.Attibutes;
 using Cinemachine;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ public class Targeter : MonoBehaviour
 {
     [SerializeField] private CinemachineTargetGroup cineTargetGroup;
     [SerializeField] private Camera mainCamera;
+
+    //debug ui
+    [SerializeField] EnemyHealthDisplay debugHealthUI;
 
     public Target CurrentTarget { get; private set; }
     public List<Target> targets = new List<Target>();
@@ -74,6 +78,7 @@ public class Targeter : MonoBehaviour
 
         CurrentTarget = closestTarget;
         cineTargetGroup.AddMember(CurrentTarget.transform, 1f, 2f);
+        debugHealthUI.SetTarget(CurrentTarget.GetComponent<Health>());
 
         return true;
     }

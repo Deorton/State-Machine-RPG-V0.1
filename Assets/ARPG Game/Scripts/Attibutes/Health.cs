@@ -23,12 +23,6 @@ namespace ARPG.Attibutes
             currentHealth = maxHealth;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void SetInvulnerable(bool isInvulnerable)
         {
             this.isInvulnerable = isInvulnerable;
@@ -55,6 +49,11 @@ namespace ARPG.Attibutes
             isDead = true;
             // Add death logic here (e.g., play animation, disable character, etc.)
             Debug.Log($"{gameObject.name} has died.");
+        }
+
+        public float GetHealthPercentage()
+        {
+            return 100 * (currentHealth / maxHealth);
         }
     }
 }
